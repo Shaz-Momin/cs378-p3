@@ -92,6 +92,24 @@ function App() {
 		setSubtotal(0);
 	};
 
+	// Alert the order information
+	const alertOrder = () => {
+		if (subtotal === 0) {
+			alert("No items in cart");
+			return;
+		}
+
+		let result = "Order placed\n";
+		for (let i = 0; i < menuItems.length; i++) {
+			if (quantities[i] > 0) {
+				result += `${quantities[i]} ${menuItems[i].title}\n`;
+			}
+		}
+
+		result += `Subtotal: $${subtotal}`;
+		alert(result);
+	};
+
 	useEffect(() => {
 		setSubtotal(
 			quantities
@@ -124,7 +142,9 @@ function App() {
 					Subtotal $<span>{subtotal}</span>
 				</div>
 				<div>
-					<button className="footerBtn">Order</button>
+					<button className="footerBtn" onClick={() => alertOrder()}>
+						Order
+					</button>
 					<button className="footerBtn" onClick={() => clearAll()}>
 						Clear All
 					</button>
