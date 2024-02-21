@@ -87,19 +87,22 @@ function App() {
 	);
 
 	// Clear all the quantities
-	const clearAll = () => {
+	const clearAll = (e) => {
+		e.preventDefault();
 		setQuantities(new Array(menuItems.length).fill(0));
 		setSubtotal(0);
 	};
 
 	// Alert the order information
-	const alertOrder = () => {
-		if (subtotal === 0) {
+	const alertOrder = (e) => {
+		e.preventDefault();
+
+		if (subtotal == 0) {
 			alert("No items in cart");
 			return;
 		}
 
-		let result = "Order placed\n";
+		let result = "Order placed!\n";
 		for (let i = 0; i < menuItems.length; i++) {
 			if (quantities[i] > 0) {
 				result += `${quantities[i]} ${menuItems[i].title}\n`;
@@ -142,10 +145,12 @@ function App() {
 					Subtotal $<span>{subtotal}</span>
 				</div>
 				<div>
-					<button className="footerBtn" onClick={() => alertOrder()}>
+					<button
+						className="footerBtn"
+						onClick={(e) => alertOrder(e)}>
 						Order
 					</button>
-					<button className="footerBtn" onClick={() => clearAll()}>
+					<button className="footerBtn" onClick={(e) => clearAll(e)}>
 						Clear All
 					</button>
 				</div>

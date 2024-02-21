@@ -15,14 +15,16 @@ const MenuItem = ({
 	setQuantities,
 }) => {
 	// Increment the quantity of this item
-	const incrementQuantity = () => {
+	const incrementQuantity = (e) => {
+		e.preventDefault();
 		const newQuantities = [...quantities];
 		newQuantities[id - 1]++;
 		setQuantities(newQuantities);
 	};
 
 	// Decrement the quantity of this item
-	const decrementQuantity = () => {
+	const decrementQuantity = (e) => {
+		e.preventDefault();
 		if (quantities[id - 1] === 0) return;
 
 		const newQuantities = [...quantities];
@@ -45,13 +47,13 @@ const MenuItem = ({
 					<div>
 						<button
 							className="itemButton"
-							onClick={() => decrementQuantity()}>
+							onClick={(e) => decrementQuantity(e)}>
 							-
 						</button>
 						<span className="itemQuantity">{itemCount}</span>
 						<button
 							className="itemButton"
-							onClick={() => incrementQuantity()}>
+							onClick={(e) => incrementQuantity(e)}>
 							+
 						</button>
 					</div>
